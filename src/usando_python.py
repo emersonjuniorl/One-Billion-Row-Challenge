@@ -6,7 +6,7 @@ CONCURRENCY = cpu_count()
 
 total_linhas = 1_000_000_000  # Total de linhas conhecido
 chunksize = 100_000_000  # Define o tamanho do chunk
-filename = "data/measurements.txt"  # Certifique-se de que este é o caminho correto para o arquivo
+filename = "data/medicoes_1000000000.txt"  # Certifique-se de que este é o caminho correto para o arquivo
 
 def process_chunk(chunk):
     # Agrega os dados dentro do chunk usando Pandas
@@ -31,8 +31,8 @@ def create_df_with_pandas(filename, total_linhas, chunksize=chunksize):
 
     final_aggregated_df = final_df.groupby('station').agg({
         'min': 'min',
-        'max': 'max',
-        'mean': 'mean'
+        'mean': 'mean',
+        'max': 'max'
     }).reset_index().sort_values('station')
 
     return final_aggregated_df
